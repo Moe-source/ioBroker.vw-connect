@@ -3516,7 +3516,7 @@ class VwWeconnect extends utils.Adapter {
           }
         })
         .catch((error) => {
-          if (error.response && (error.response.status === 400 || error.response.status === 404)) {
+          if (error.response && [400, 403, 404, 410].includes(error.response.status)) {
             this.log.info("Vehicle is not supporting: " + endpoint.path);
             if (!this.ignoredPaths[vin]) {
               this.ignoredPaths[vin] = [];
