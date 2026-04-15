@@ -399,7 +399,14 @@ class VwWeconnect extends utils.Adapter {
                 this.updateStatus();
               }, this.config.interval * 60 * 1000);
 
-              if (this.config.type !== "id" && this.config.type !== "skodae" && this.config.type !== "audietron") {
+              if (
+                this.config.type !== "id" &&
+                this.config.type !== "skodae" &&
+                this.config.type !== "audietron" &&
+                this.config.type !== "seatcupra" &&
+                this.config.type !== "seat" &&
+                this.config.type !== "audidata"
+              ) {
                 if (this.config.forceinterval > 0) {
                   this.fupdateInterval = setInterval(() => {
                     if (this.config.type === "go") {
