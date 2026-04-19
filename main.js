@@ -3531,6 +3531,11 @@ class VwWeconnect extends utils.Adapter {
             this.ignoredPaths[vin].push(endpoint.path);
             return;
           }
+          if (error.response && error.response.status >= 500 && error.response.status < 600) {
+            this.log.debug("Server error for " + endpoint.path + ": " + error.response.status);
+            error.response.data && this.log.debug(JSON.stringify(error.response.data));
+            return;
+          }
           this.log.error(error);
           error.response && this.log.error(JSON.stringify(error.response.data));
         });
