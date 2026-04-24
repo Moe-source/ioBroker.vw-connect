@@ -3495,7 +3495,8 @@ class VwWeconnect extends utils.Adapter {
           const options = endpoint.options || {};
           if (endpoint.path === "tripLong" || endpoint.path === "tripCyclic") {
             //reverse data array by tripId
-            if (!response.data.data) {
+            if (!Array.isArray(response.data.data)) {
+              this.log.debug("No trip data array for " + endpoint.path);
               return;
             }
             response.data.data.sort((a, b) => {
