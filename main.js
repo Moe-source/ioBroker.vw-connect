@@ -764,7 +764,7 @@ class VwWeconnect extends utils.Adapter {
                                       followAllRedirects: true,
                                       gzip: true,
                                     },
-                                    (err, resp, body) => {
+                                    (err, resp, _body) => {
                                       if (err && err.message.indexOf("Invalid protocol:") === 0) {
                                         this.log.info("Marketing consent skipped. Restart adapter in 10sec");
                                         setTimeout(() => {
@@ -3071,7 +3071,6 @@ class VwWeconnect extends utils.Adapter {
     if (credentials && credentials.fcm && credentials.fcm.registration && credentials.fcm.registration.token) {
       if (credentials.version !== 3) {
         this.log.info("MQTT: FCM credentials outdated (missing Android headers), re-registering...");
-        credentials = null;
       } else {
         this.log.debug("MQTT: Found existing FCM credentials, validating with checkin...");
         try {
@@ -3080,7 +3079,6 @@ class VwWeconnect extends utils.Adapter {
           return credentials.fcm.registration.token;
         } catch (e) {
           this.log.warn("MQTT: Existing FCM credentials invalid, re-registering: " + e.message);
-          credentials = null;
         }
       }
     }
@@ -3294,7 +3292,7 @@ class VwWeconnect extends utils.Adapter {
       if (state && state.val) {
         return JSON.parse(state.val);
       }
-    } catch (e) {
+    } catch {
       this.log.debug("MQTT: No stored FCM credentials found");
     }
     return null;

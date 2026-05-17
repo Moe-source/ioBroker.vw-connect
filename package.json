@@ -81,7 +81,7 @@
     "lint": "eslint",
     "test": "npm run test:js && npm run test:package",
     "test:integration": "mocha test/integration --exit",
-    "test:js": "mocha --opts test/mocha.custom.opts",
+    "test:js": "mocha",
     "test:package": "mocha test/package --exit",
     "test:unit": "mocha test/unit --exit",
     "check": "tsc --noEmit -p tsconfig.check.json",
